@@ -1,0 +1,9 @@
+Customer name: Kavita Shah
+Email: kavita.shah@example.com
+Phone: +91 99887 66554
+
+My latest invoice contains two charges for the same annual subscription. I have
+attached the invoice showing both entries. Please investigate the duplicate charge
+and confirm whether one payment will be reversed.
+
+Case status: Under Review

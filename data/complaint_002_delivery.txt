@@ -1,0 +1,8 @@
+Customer name: Daniel Brooks
+Email: daniel.brooks@example.com
+
+My replacement laptop was delivered with a cracked screen. The original support
+case was already open, and the courier delivery receipt is available. I need a
+replacement arranged as soon as possible. No resolution has been provided yet.
+
+Case status: Escalated

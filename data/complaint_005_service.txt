@@ -1,0 +1,9 @@
+Customer name: Elena Garcia
+Email: elena.garcia@example.com
+
+The home internet service has been unavailable since Monday morning. I have
+restarted the router twice and checked the cables. A technician visit was offered
+for Friday, but the outage is still affecting my work. Please confirm the next
+available appointment.
+
+Case status: Pending Action

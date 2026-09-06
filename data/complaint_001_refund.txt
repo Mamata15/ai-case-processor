@@ -1,0 +1,9 @@
+Customer name: Priya Menon
+Email: priya.menon@example.com
+Phone: +91 98765 43210
+
+I am writing about a refund for order 45821. The order was cancelled on 12 August,
+but the refund has not appeared in my account. I have attached the cancellation
+confirmation. Please check the refund status and let me know what happens next.
+
+Case status: Open

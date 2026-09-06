@@ -1,0 +1,8 @@
+Customer name: Marcus Lee
+Email: marcus.lee@example.com
+
+I cannot sign in to my account after changing my phone. The password reset message
+does not arrive, and I have been locked out since yesterday. I have not received
+any resolution. Please help restore access.
+
+Case status: Open
