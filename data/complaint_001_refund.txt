@@ -1,6 +1,6 @@
-Customer name: Priya Menon
-Email: priya.menon@example.com
-Phone: +91 98765 43210
+Customer name: Twinkle Rathore
+Email: mamtarathore2604@gmail.com
+Phone: +91 7892135769
 
 I am writing about a refund for order 45821. The order was cancelled on 12 August,
 but the refund has not appeared in my account. I have attached the cancellation

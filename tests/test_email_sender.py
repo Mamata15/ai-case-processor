@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Any
 
 from src.config import Settings
-from src.email_sender import send_customer_email
+from src.email_sender import EmailConfigurationError, send_customer_email
 from src.models import CustomerEmail
 
 
@@ -53,3 +53,23 @@ def test_sends_generated_email(monkeypatch) -> None:
 
     assert FakeSMTP.sent_message["To"] == "customer@example.com"
     assert FakeSMTP.sent_message["Subject"] == "Complaint received"
+
+
+def test_rejects_missing_sender_before_smtp_connection() -> None:
+    settings = Settings(
+        data_dir=Path("data"),
+        output_dir=Path("output"),
+        sender_email=None,
+        smtp_host="smtp.example.com",
+    )
+
+    try:
+        send_customer_email(
+            "customer@example.com",
+            CustomerEmail(subject="Complaint received", body="We received your complaint."),
+            settings,
+        )
+    except EmailConfigurationError as exc:
+        assert "SENDER_EMAIL" in str(exc)
+    else:
+        raise AssertionError("Expected missing sender configuration to fail")

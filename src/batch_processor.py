@@ -38,11 +38,25 @@ def process_batch(settings: Settings, llm_client: LLMClient) -> Path:
     ]
 
     for document in documents:
-        row: Dict[str, Any] = {"source_file": document.source_path.name}
+        row: Dict[str, Any] = {
+            "source_file": document.source_path.name,
+            "extraction_status": "not_started",
+            "email_generation_status": "not_started",
+            "summary_status": "not_started",
+            "sender_email": settings.sender_email or "",
+            "email_sent": False,
+            "processing_error": "",
+        }
         try:
             case = extract_case(document.text, llm_client)
+            row.update(case.model_dump())
+            row["extraction_status"] = "completed"
+
             email = generate_customer_email(case, llm_client)
+            row["email_generation_status"] = "completed"
+
             summary = generate_case_summary(case, llm_client)
+            row["summary_status"] = "completed"
 
             stem = document.source_path.stem
             (structured_dir / f"{stem}.json").write_text(
@@ -50,12 +64,13 @@ def process_batch(settings: Settings, llm_client: LLMClient) -> Path:
             )
             _write_text(
                 emails_dir / f"{stem}.txt",
+                f"From: {settings.sender_email or '[SENDER_EMAIL not configured]'}\n"
+                f"To: {case.email or '[customer email not found]'}\n"
                 f"Subject: {email.subject}\n\n{email.body}\n",
             )
-            email_sent = False
             if settings.send_emails:
                 send_customer_email(case.email, email, settings)
-                email_sent = True
+                row["email_sent"] = True
             _write_text(
                 summaries_dir / f"{stem}.txt",
                 "\n".join(
@@ -69,9 +84,6 @@ def process_batch(settings: Settings, llm_client: LLMClient) -> Path:
                 )
                 + "\n",
             )
-            row.update(case.model_dump())
-            row["email_sent"] = email_sent
-            row["processing_error"] = ""
         except Exception as exc:
             LOGGER.exception("Failed to process %s", document.source_path.name)
             row["processing_error"] = str(exc)

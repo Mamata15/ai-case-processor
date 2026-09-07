@@ -78,6 +78,12 @@ SENDER_EMAIL=support@example.com
 SMTP_USE_TLS=true
 ```
 
+Set `SENDER_EMAIL` to the support or organization address that should appear in
+the generated email preview as `From`. The customer `To` address is extracted
+from each complaint document. You can set `SENDER_EMAIL` now and leave
+`SEND_EMAILS=false` while reviewing generated messages; no email is sent in
+that mode.
+
 When enabled, the workflow sends each email to the address extracted from its
 source document. Cases without an email address fail safely for that document
 and are recorded in `final_report.csv`. Use a test mailbox during development;
